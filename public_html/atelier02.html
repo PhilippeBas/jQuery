@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Formation jQuery</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/stage.css" rel="stylesheet"/>
+        <style>
+            .test{
+                width: 200px;
+                height: 200px;
+                color: red;
+                background-color: yellow;
+                }
+        </style>
+    </head>
+    <body>
+        <div id="page">
+            <div id="test">
+             Premier pas en jQuery   
+            </div>  
+        </div>
+        <script src="js/lib/jquery-3.3.1.min.js"></script>
+        <script src="js/lib/bootstrap.min.js" ></script>
+        <script>
+            //$('#test').addClass('test'); //---pour test le depart
+        //--puis
+        //--- 1er méthode
+            //$('#test').css('width','200px');
+        //---2 ieme méthode
+            $('#test').css({
+                'width': '200px',
+                'height': '200px',
+                'color': 'white',
+                'background-color': 'green'
+            });
+        </script>
+        <script src="js/bootstrap.menu.min.js" type="text/javascript"></script>
+        <script>
+           Menu.load('js/menu.json','#page','dark');
+        </script>
+    </body>
+</html>

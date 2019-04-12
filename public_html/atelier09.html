@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Formation jQuery</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/stage.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="page">
+            <fieldset>
+                <legend class="text-center">Saisissez vos informations</legend>
+                <h6 class="text-center">Avec Controle auto à la volé par JS</h6>
+                <form class="mt-4" >
+                    <div class="form-group row">
+                      <label for="nom" class="col-sm-4 col-form-label">Nom</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" id="nom" name="nom">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="prenom" class="col-sm-4 col-form-label">Prénom</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" id="prenom" name="prenom">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="codepostal" class="col-sm-4 col-form-label">Code Postal</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" id="codepostal" name="codepostal">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="ville" class="col-sm-4 col-form-label">Ville</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" id="ville" name="ville">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="email" class="col-sm-4 col-form-label">Email</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" id="email" name="email">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="datenaissance" class="col-sm-4 col-form-label">Date de naissance</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" id="datenaissance" name="datenaissance">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="mdp1" class="col-sm-4 col-form-label">Votre mot passe</label>
+                      <div class="col-sm-8">
+                           <div class="input-group">
+                               <input type="password" class="form-control" id="mdp1" name="mdp1">
+                                <div class="input-group-append">
+                                    <span class="input-group-text password">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="mdp2" class="col-sm-4 col-form-label">Confirmer votre mot passe</label>
+                      <div class="col-sm-8">
+                           <div class="input-group">
+                               <input type="password" class="form-control" id="mdp2" name="mdp2">
+                                <div class="input-group-append">
+                                    <span class="input-group-text password">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    <div class="form-group row">
+                        <div class="offset-sm-4 col-sm-8">
+                            <input type="submit" class="btn btn-success" value="Valider">
+                            <input type="reset" class="btn btn-danger ml-2 " value="Annuler">
+                        </div>
+                    </div>
+                </form>
+                <ul id="message" class="alert-danger"></ul>
+            </fieldset>
+        </div>
+        <script src="js/lib/jquery-3.3.1.min.js"></script>
+        <script src="js/lib/bootstrap.min.js" ></script>
+        <script src="js/bootstrap.menu.min.js" ></script>
+        <script src="js/lib/jquery.validate.min.js" ></script>
+        <script src="js/lib/i18n/messages_fr.js" ></script>
+        <script>
+            Menu.load('js/menu.json', '#page', "dark");
+            
+                //--- pour le passeword 
+                   $(".password").mousedown(function(){
+                    $(this).text('X');
+                    var gparent =$(this).parent().parent();
+                    gparent.find('input').attr('type', 'text');
+                });
+          
+                $(".password").mouseup(function(){
+                    $(this).empty(); 
+                    var gparent =$(this).parent().parent();
+                    gparent.find('input').attr('type', 'password');
+                   });
+            
+            /*  Match italien postcode (cap */
+            $.validator.addMethod("codepostalFR", function ( value,element){
+                var regexp =  /^(2[A-Ba-b]\d{3})|d{5}$/;
+                return this.optional(element) || regexp.test(value);
+            });
+    
+            /*  controle mdp*/
+            $.validator.addMethod("confirmPassword", function ( value, pwd1, pwd2){
+                console.log( pwd1.value);
+//                console.log(pwd2);
+                return this.optional(pwd1) || pwd1.value === $(pwd2).val();
+            });
+             
+             //--- Pour la validation
+             $('form').validate({
+                 errorLabelContainer:"#message",
+                 wrapper: "li",
+                 
+                rules: {
+                    'nom': {
+                        required: true,
+                        minlength:2,
+                        maxlength:30
+                    },
+                    'prenom': {
+                        required: true,
+                        minlength:2,
+                        maxlength:30
+                    },
+                    'codepostal': {
+                        required: true,
+                        codepostalFR: true
+                    },
+                    'ville': {
+                        required: true,
+                        minlength:2,
+                        maxlength:30
+                    },
+                    'email': {
+                        required: true,
+                        email: true
+                    },
+                    'datenaissance': {
+                        required: true,
+                        dateITA: true
+                    },
+                    'mdp1':{
+                        required: true,
+                        confirmPassword: "#mdp2"
+                    },
+//                    'mdp2':{
+//                        required: true,
+//                        confirmPassword: "#mdp1"
+//                    }
+                }
+                
+             });
+            
+        </script>
+    </body>
+</html>

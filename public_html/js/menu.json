@@ -1,0 +1,34 @@
+{
+    "title": "jQuery",
+    "data":
+            {
+                "JavaScript et DOM": 
+                        {
+                            "Manipulation des images": "atelier01.html",
+                            "Manipulation des tableaux": "atelier01b.html"
+                        },
+                "Premiers pas en jQuery": "atelier02.html",
+                "Sélecteurs": "atelier03.html",
+                "Evénements": "atelier04.html",
+                "Effets": {
+                    "Animation en jQuery": "atelier05.html",
+                    "Animation en CSS3": "atelier05b.html"
+                },
+                "Manipulation du DOM": {
+                    "Manipulation des images": "atelier06.html",
+                    "Manipulation des tableaux": "atelier06b.html"
+                },
+                "AJAX": "atelier07.html",
+                "Manipulation des tableaux":{
+                    "Avec theme Bootstrap": "atelier08.html",
+                    "Avec theme jQuery UI": "atelier08b.html",
+                    "Avec theme jQuery UI avec tri": "atelier08c.html"
+                },
+                "Validation des formulaires":{
+                    "Avec controleur": "atelier09.html",
+                    "Avec controleur js": "atelier09b.html"
+                },
+                "Les thèmes et les widgets": "atelier10.html",
+                "Développement de plugins": "atelier11.html"
+            }
+}

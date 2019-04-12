@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Formation jQuery</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/stage.css" rel="stylesheet"/>
+        <style>
+            #result {
+                display: block;
+                width: 200px;
+                height: 200px;
+                background-color: yellow;
+                font-size: 12px;
+                border: 1px solid gray;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="page">
+            <div>
+                <button id="btnLancer" class="btn btn-success">Lancer</button>
+                <button id="btnInit" class="btn btn-danger">Init</button>
+            </div>
+            <div id="result">Philippe</div>    
+        
+        </div>
+        <script src="js/lib/jquery-3.3.1.min.js"></script>
+        <script src="js/lib/bootstrap.min.js" ></script>
+        <script>
+            $('#btnLancer').click(function(){
+               $('#result')
+                       .animate(
+                       {
+                           width: '90%',
+                           fontSize: '36pt'
+                       },{ 
+                           duration: 5000 
+                       }
+                )
+                .animate(
+                {
+                    height: '600px'
+                },{
+                    duration: 1500 
+                });
+            });
+            
+            $('#btnInit').click(function(){
+               $('#result').animate(
+                       {height: '200px', fontSize : '12pt'},
+                       { duration: 5000 }
+                ).animate(
+                    {width: '200px'},
+                    { duration: 1500 }
+                );
+            });
+            
+      
+        
+        
+        </script>
+        <script src="js/bootstrap.menu.min.js" type="text/javascript"></script>
+        <script>
+           Menu.load('js/menu.json','#page','dark');
+        </script>
+    </body>
+</html>

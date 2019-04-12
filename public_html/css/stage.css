@@ -1,0 +1,119 @@
+#source, #target{
+    height: 130px;
+    padding: 1px;
+    margin: 5px;
+    border: 2px solid gray;
+}
+
+.delete{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url(img/delete.png);
+}
+
+#result{
+    height: 130px;
+    padding: 1px;
+    margin: 5px;
+    border: 2px solid gray;
+    
+    animation-iteration-count: 2;
+    animation-direction: alternate; 
+
+   
+}
+
+#result:hover{
+    animation-duration: 6500ms;
+    animation-name: monAnimation;
+    animation-iteration-count: 2;
+    /*animation-iteration-count: infinite;*/
+    animation-direction: alterne;
+}
+
+/*//-- si on veut faire un theme personnalisé*/
+/* --- le theme de la barre de nav --- */
+
+/* blue */
+.bg-blue{
+    background-color:blue !important;
+}
+.navbar-blue .navbar-nav .nav-link{
+    color: yellow;
+}
+.navbar-blue .navbar-brand{
+    color:#fff;
+}
+
+/* silver */
+.bg-blue{
+    background-color:black !important;
+    background: linear-gradient(silver, black, silver);
+}
+.navbar-blue .navbar-nav .nav-link{
+    color: yellow;
+}
+.navbar-blue .navbar-brand{
+    color:#fff;
+}
+
+/* ---  pour le hover de l'atelier 08'  ---- */
+.table tbody tr:hover td{
+    color:white;
+    background-color: royalblue;
+    border-color: green;
+}
+
+/* pour l'atelier09' */
+fieldset{
+    width: 600px;
+    margin: 20px auto;
+}
+
+/* l'oeil de password' */
+.password{
+    background: url(img/eyeball.png) center no-repeat;
+    background-size: 100%;
+    color: gray;
+    font-weight: bold;
+}
+
+
+#message.erreur{
+    display: none;
+    border: 1px solid red;
+    color:red;
+    font-style: italic;
+}
+
+
+
+
+
+
+/*animation en CSS*/
+@keyframes monAnimation{
+    
+     0%{
+        width: 200px;
+        height: 200px;
+        background-color: green;
+        border: 1px solid gray ;
+        font-size:12pt;
+    } 
+    77%{
+        width: 90%;
+        height: 200px;
+        background-color: red;
+        border: 1px solid gray ;
+        font-size:36pt;
+    } 
+    100%{
+        width: 90%;
+        height: 600px;
+        font-size:36pt;
+        background-color: yellow;
+    } 
+}
+  

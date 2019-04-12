@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Formation jQuery</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/stage.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="page">
+            <fieldset>
+                <legend>Saisissez vos informations</legend>
+                <form novalidate class="mt-4">
+                    <div class="form-group row">
+                        <label for="nom" class="col-sm-4 col-form-label">Nom</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="nom" name="nom" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="prenom" class="col-sm-4 col-form-label">Prénom</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="prenom" name="prenom" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="codepostal" class="col-sm-4 col-form-label">Code Postal</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="codepostal" maxlength="5" pattern="\d(2[ABab]\d{3})|\d{5}" title="code postal fraçais" name="codepostal" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="ville" class="col-sm-4 col-form-label">Ville</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="ville" name="ville" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="email" class="col-sm-4 col-form-label">Email</label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="datenaissance" class="col-sm-4 col-form-label">Date de naissance</label>
+                        <div class="col-sm-8">
+                            <input type="date" class="form-control" id="datenaissance" name="datedenaissance" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="mdp1" class="col-sm-4 col-form-label">Votre mot passe</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="mdp1" name="motdepasse" required >
+                                <div class="input-group-append">
+                                    <span class="input-group-text password">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="mdp2" class="col-sm-4 col-form-label">Confirmer votre mot passe</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="mdp2" >
+                                <div class="input-group-append">
+                                    <span class="input-group-text password">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-sm-4 col-sm-8">
+                            <input type="submit" class="btn btn-success" value="Valider">
+                            <input type="reset" class="btn btn-danger ml-2 " value="Annuler">
+                        </div>
+                    </div>
+                </form>
+                <div id="message" class="alert-danger"></div>
+            </fieldset>
+        </div>
+        <script src="js/lib/jquery-3.3.1.min.js"></script>
+        <script src="js/lib/bootstrap.min.js" ></script>
+        <script src="js/bootstrap.menu.min.js" type="text/javascript"></script>
+        <script>
+            Menu.load('js/menu.json', '#page', "dark");
+
+            //--- pour le password 
+            $(".password").mousedown(function () {
+                $(this).text('X');
+                var gparent = $(this).parent().parent();
+                gparent.find('input').attr('type', 'text');
+            });
+
+            $(".password").mouseup(function () {
+                $(this).empty();
+                var gparent = $(this).parent().parent();
+                gparent.find('input').attr('type', 'password');
+            });
+
+
+            //--- Pour le controle des champs avant validation
+            //---le 'e' pour l'evenement
+            $('form').submit(function (e) {
+                $('#message').empty();
+                $('<h4>').appendTo('#message')
+                        .text('Vous avez des erreurs de saisie')
+                        .css('textAlign', 'center');
+                var ul = $('<ul>').appendTo('#message');
+                
+                $('#mdp1').get(0).setCustomValidity('');
+
+                if (!this.checkValidity()) {
+                    $('input:invalid').each(function () {
+                        var msg = this.validationMessage;
+                        var nom = $('label[for=' + this.id + ']').text();
+                        $('<li>').appendTo(ul).text(nom + ': ' + msg);
+                    });
+                    $('#message').show();
+                    e.preventDefault();
+                }
+
+                //--- pour controler si les  2 mdp sont identique
+                if ($('#mdp1').val() !== $('#mdp2').val()) {
+                    var mdp1 = $('#mdp1').get(0);
+                    mdp1.setCustomValidity("Les deux mots de passe doivent ête identique");
+                    var msg = mdp1.validationMessage;
+                    var nom = $('label[for=' + mdp1.id + ']').text();
+                    $('<li>').appendTo(ul).text(nom + ': ' + msg);
+                    $('#message').show();
+                    e.preventDefault();
+                }
+
+            });
+
+        </script>
+    </body>
+</html>

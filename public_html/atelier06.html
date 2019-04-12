@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Formation jQuery</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/stage.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="page">
+            <div id="source">
+                <img src="img/clavier.png" alt=""/>
+                <img src="img/ecran.png" alt=""/>
+                <img src="img/pc.png" alt=""/>
+                <img src="img/souris.png" alt=""/>
+            <img src="img/printer.png" alt=""/>
+            </div>
+            <div id="target">
+                
+            </div>
+
+        </div>
+        <script src="js/lib/jquery-3.3.1.min.js"></script>
+        <script src="js/lib/bootstrap.min.js" ></script>
+        <script>
+            //--- pour deplacer les images avec un clic
+            $('#source img').click(function(){
+                    var parent = $(this).parent();
+                    $(this).detach();
+                    if (parent.attr('id') === 'source')
+                       $('#target').append(this);
+                    else
+                        $('#source').append(this);
+                    
+            });
+        </script>
+        <script src="js/bootstrap.menu.min.js" type="text/javascript"></script>
+        <script>
+           Menu.load('js/menu.json','#page','dark');
+        </script>
+    </body>
+</html>
